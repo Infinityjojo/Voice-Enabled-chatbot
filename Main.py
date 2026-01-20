@@ -214,7 +214,10 @@ if mode == "Text":
 
 # ---------------- Voice ----------------
 else:
-    uploaded_audio = st.file_uploader("Upload an audio file (.wav/.mp3)", type=["wav", "mp3"])
+  uploaded_audio = st.file_uploader(
+    "Upload an audio file (.wav recommended)",
+    type=["wav"]
+)
     if uploaded_audio:
         ok, result = transcribe_uploaded_audio(uploaded_audio, language=language)
         if ok:
