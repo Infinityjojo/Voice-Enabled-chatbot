@@ -214,24 +214,32 @@ if mode == "Text":
 
 # ---------------- Voice ----------------
 else:
-  uploaded_audio = st.file_uploader(
-    "Upload an audio file (.wav recommended)",
-    type=["wav"]
-)
+    uploaded_audio = st.file_uploader(
+        "Upload an audio file (.wav recommended)",
+        type=["wav"]
+    )
+
     if uploaded_audio:
-        ok, result = transcribe_uploaded_audio(uploaded_audio, language=language)
+        ok, result = transcribe_uploaded_audio(
+            uploaded_audio,
+            language=language
+        )
+
         if ok:
             st.session_state.chat.append(("user", result))
+
             reply = chatbot_reply(
                 result,
                 st.session_state.sentences,
                 st.session_state.vectorizer,
                 st.session_state.X
             )
+
             st.session_state.chat.append(("assistant", reply))
             st.rerun()
         else:
             st.error(result)
+
 
 # ---------------- Utilities ----------------
 st.divider()
